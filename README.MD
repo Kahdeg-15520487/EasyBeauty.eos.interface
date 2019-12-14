@@ -1,0 +1,1 @@
+# EasyBeauty.eos.interface
