@@ -7,5 +7,22 @@
   },
   "scripts": {
     "start": "nodemon index.js"
-  }
+  },
+  "name": "easybeauty.eos.interface",
+  "description": "js interface for smart contract running on an eos network",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Kahdeg-15520487/EasyBeauty.eos.interface.git"
+  },
+  "keywords": [
+    "eos"
+  ],
+  "author": "Le Minh",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Kahdeg-15520487/EasyBeauty.eos.interface/issues"
+  },
+  "homepage": "https://github.com/Kahdeg-15520487/EasyBeauty.eos.interface#readme"
 }

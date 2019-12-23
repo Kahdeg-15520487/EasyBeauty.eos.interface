@@ -1,8 +1,8 @@
-const hash = require('./hash.js');
-const table = require('./table.js');
-const util = require('./utility.js');
+import hash from 'hash';
+import table from './table.ts';
+import util from './utility.ts';
 
-const crtx = async (obj, api) => {
+const crtx = async (obj: TransactionDTO, api) => {
 
     const hasheddata = hash.hashTransaction(obj);
     const hashedobj = {
@@ -41,9 +41,9 @@ const crtx = async (obj, api) => {
         .catch(e => console.log(e));
 }
 
-const checkDuplicate = async(txid,rpc)=>{
+const checkDuplicate = async (txid, rpc) => {
     const oldtx = await table.getTransaction(txid, rpc);
-    return oldtx ? true :false;
+    return oldtx ? true : false;
 }
 
 const createTransaction = async (req, res, api, rpc) => {
@@ -54,26 +54,21 @@ const createTransaction = async (req, res, api, rpc) => {
     const to = req.body.transactionInfo.to;
     const value = req.body.transactionInfo.value;
 
-    if (await checkDuplicate(txid,rpc)) {
+    if (await checkDuplicate(txid, rpc)) {
         res.statusCode = 400;
         res.send("Transaction already existed");
         return;
     }
-    const obj = {
-        "txid": txid,
-        "from": from,
-        "to": to,
-        "value": value
-    };
+    const obj = new TransactionDTO(txid, from, to, value);
     console.log(obj);
 
     if (txid && from && to && value) {
 
         const result = await crtx(obj, api);
-        if(result.status){
+        if (result.status) {
             res.send(result.val);
         }
-        else{
+        else {
             res.statusCode = 500;
             res.json(result.val);
         }
