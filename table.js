@@ -1,38 +1,3 @@
-const bcQuery = async (req, res, rpc) => {
-    const tableName = req.params["tb"];
-    switch (tableName) {
-        case "transactions":
-            {
-                const result = await bcTransactionQuery(rpc, true);
-                res.json(result);
-            }
-            break;
-        case "coins":
-            {
-                const result = await bcCoinQuery(rpc, true);
-                res.json(result);
-            }
-            break;
-        case "reviews":
-            {
-                const result = await bcReviewQuery(rpc, true);
-                res.json(result);
-            }
-            break;
-        case "discounts":
-            {
-                const result = await bcDiscountQuery(rpc, true);
-                res.json(result);
-            }
-            break;
-
-        default:
-            res.statusCode = 400;
-            console.log('unknown table');
-            res.send('Unknown table');
-    }
-}
-
 const bcTransactionQuery = (rpc,remk = false) => {
     return rpc.get_table_rows({
         json: true,              // Get the response as json
@@ -133,7 +98,6 @@ const getDiscount = async (txid, usid, rpc) => {
     return map.get(`${txid};${usid}`);
 }
 
-module.exports.query = bcQuery;
 module.exports.getTransaction = getTransaction;
 module.exports.getCoin = getCoin;
 module.exports.getReview = getReview;

@@ -17,101 +17,15 @@ const discount = require('./discount.js');
 
 class EasyBeautyEOS {
     constructor(key, node) {
-        signatureProvider = new JsSignatureProvider([key]);
+        this.signatureProvider = new JsSignatureProvider([key]);
         this.rpc = new JsonRpc(node, fetch);
-        this.api = new Api({ rpc, signatureProvider, textDecoder: new TextDecoder(), textEncoder: new TextEncoder() });
+        this.api = new Api({ rpc: this.rpc,signatureProvider: this.signatureProvider, textDecoder: new TextDecoder(), textEncoder: new TextEncoder() });
     }
-
-    async createTransaction(txid, from, to, value) {
-        if (await tx.checkDuplicate(txid, this.rpc)) {
-            return { "status": false, "val": "duplicate transaction" };
-        }
-        return await tx.crtx({
-            "txid": txid,
-            "from": from,
-            "to": to,
-            "value": value
-        }, this.api);
-    }
-
-    async validateTransaction(txid, from, to, value) {
-        const oldtx = await table.getTransaction(txid, this.rpc);
-        console.log(txid);
-
-        if (!oldtx) {
-            return { "status": false, "val": "transaction does not exist" };
-        }
-
-        const obj = {
-            "txid": req.body.transactionId,
-            "from": req.body.transactionInfo.from,
-            "to": req.body.transactionInfo.to,
-            "value": req.body.transactionInfo.value
-        };
-
-        const h = hash.hashTransaction(obj);
-        const result = oldtx.hash === h;
-        return { "status": true, "val": result };
-    }
-
-    async getTransaction(txid) {
-        console.log(txid);
-        const transaction = await table.getTransaction(txid, this.rpc);
-        if (transaction) {
-            delete transaction.key;
-            return {"status": true, "val": JSON.stringify(transaction)};
-        }
-        else {
-            return { "status": false, "val": "transaction does not exist" };
-        }
-    }
-
-    
-
-    async createReview(rvid, txid, rate, comment, time) {
-        if (await tx.checkDuplicate(rvid, this.rpc)) {
-            return { "status": false, "val": "duplicate review" };
-        }
-        return await tx.crtx({
-            "txid": txid,
-            "from": from,
-            "to": to,
-            "value": value
-        }, this.api);
-    }
-
-    async validateTransaction(txid, from, to, value) {
-        const oldtx = await table.getTransaction(txid, this.rpc);
-        console.log(txid);
-
-        if (!oldtx) {
-            return { "status": false, "val": "transaction does not exist" };
-        }
-
-        const obj = {
-            "txid": req.body.transactionId,
-            "from": req.body.transactionInfo.from,
-            "to": req.body.transactionInfo.to,
-            "value": req.body.transactionInfo.value
-        };
-
-        const h = hash.hashTransaction(obj);
-        const result = oldtx.hash === h;
-        return { "status": true, "val": result };
-    }
-
-    async getTransaction(txid) {
-        console.log(txid);
-        const transaction = await table.getTransaction(txid, this.rpc);
-        if (transaction) {
-            delete transaction.key;
-            return {"status": true, "val": JSON.stringify(transaction)};
-        }
-        else {
-            return { "status": false, "val": "transaction does not exist" };
-        }
-    }
-
 }
 
-module.exports = EasyBeautyEOS;
+module.exports.EasyBeautyEOS = function (key, node) { return new EasyBeautyEOS(key, node); }
+module.exports.EasyBeautyEOS.transaction = tx;
+module.exports.EasyBeautyEOS.review = rv;
+module.exports.EasyBeautyEOS.coin = coin;
+module.exports.EasyBeautyEOS.discount = discount;
+module.exports.EasyBeautyEOS.table = table;

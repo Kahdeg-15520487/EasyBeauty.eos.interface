@@ -6,6 +6,6 @@
     "node-fetch": "^2.6.0"
   },
   "scripts": {
-    "start": "nodemon index.js"
+    "start": "nodemon main.js"
   }
 }
