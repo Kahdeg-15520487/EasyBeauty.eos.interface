@@ -32,7 +32,6 @@ const bcTransactionQuery = (rpc, remk = false) => {
         table: "transactions",        // Table name
         limit: 9999
     }).then(resp => {
-        console.log("success");
         if (remk) {
             return resp.rows.map(row => {
                 delete row.key;
@@ -51,7 +50,6 @@ const bcCoinQuery = (rpc, remk = false) => {
         table: "coins",        // Table name
         limit: 9999
     }).then(resp => {
-        console.log("success");
         if (remk) {
             return resp.rows.map(row => {
                 delete row.key;
@@ -70,7 +68,6 @@ const bcReviewQuery = (rpc, remk = false) => {
         table: "reviews",        // Table name
         limit: 9999
     }).then(resp => {
-        console.log("success");
         if (remk) {
             return resp.rows.map(row => {
                 delete row.key;
@@ -89,7 +86,6 @@ const bcDiscountQuery = (rpc, remk = false) => {
         table: "discounts",        // Table name
         limit: 9999
     }).then(resp => {
-        console.log("success");
         if (remk) {
             return resp.rows.map(row => {
                 delete row.key;

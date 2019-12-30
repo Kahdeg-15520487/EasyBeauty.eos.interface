@@ -7,5 +7,23 @@
   },
   "scripts": {
     "start": "nodemon main.js"
-  }
+  },
+  "name": "@kahdeg/easybeauty.eos.interface",
+  "description": "Nodejs + npm  \r Postman",
+  "version": "1.0.1",
+  "main": "index.js",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Kahdeg-15520487/EasyBeauty.eos.interface.git"
+  },
+  "keywords": [
+    "eos"
+  ],
+  "author": "Nguyen Le Minh",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Kahdeg-15520487/EasyBeauty.eos.interface/issues"
+  },
+  "homepage": "https://github.com/Kahdeg-15520487/EasyBeauty.eos.interface#readme"
 }
