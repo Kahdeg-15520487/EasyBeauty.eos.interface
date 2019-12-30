@@ -1,7 +1,7 @@
 const table = require('./table.js');
 
 const setCoin = async (obj, api) => {
-    return api.transact({
+    const result = await api.transact({
         actions: [{
             account: 'store.data',
             name: 'updatecoin',
@@ -22,6 +22,8 @@ const setCoin = async (obj, api) => {
             return { "status": false, "val": r };
         })
         .catch(e => console.log(e));
+
+    return { "status": result.status === true, "val": result.val + '' };
 }
 
 const updateCoin = async (conn, usid, coin) => {
@@ -40,7 +42,7 @@ const updateCoin = async (conn, usid, coin) => {
     if (usid && coin) {
         return await setCoin(obj, conn.api);
     }
-    else{
+    else {
         return { "status": false, "val": "malformed data" };
     }
 }

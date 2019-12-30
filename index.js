@@ -18,8 +18,8 @@ const discount = require('./discount.js');
 class EasyBeautyEOS {
     constructor(key, node) {
         this.signatureProvider = new JsSignatureProvider([key]);
-        this.rpc = new JsonRpc(node, fetch);
-        this.api = new Api({ rpc: this.rpc,signatureProvider: this.signatureProvider, textDecoder: new TextDecoder(), textEncoder: new TextEncoder() });
+        this.rpc = new JsonRpc(node, { "fetch": fetch });
+        this.api = new Api({ rpc: this.rpc, signatureProvider: this.signatureProvider, textDecoder: new TextDecoder(), textEncoder: new TextEncoder() });
     }
 }
 
@@ -29,3 +29,4 @@ module.exports.EasyBeautyEOS.review = rv;
 module.exports.EasyBeautyEOS.coin = coin;
 module.exports.EasyBeautyEOS.discount = discount;
 module.exports.EasyBeautyEOS.table = table;
+module.exports.EasyBeautyEOS.utility = util;

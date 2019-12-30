@@ -15,7 +15,7 @@ const crrv = async (obj, api) => {
         "hash": hasheddata
     }
 
-    return api.transact({
+    const result = await api.transact({
         actions: [{
             account: 'store.data',
             name: 'addreview',
@@ -36,6 +36,8 @@ const crrv = async (obj, api) => {
             return { "status": false, "val": r };
         })
         .catch(e => console.log(e));
+
+    return { "status": result.status === true, "val": result.val + '' };
 }
 
 const checkDuplicate = async (rvid, rpc) => {

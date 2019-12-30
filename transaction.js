@@ -14,8 +14,8 @@ const crtx = async (obj, api) => {
         "to": obj.to,
         "hash": hasheddata
     }
-
-    return api.transact({
+    console.log("lala");
+    const rs = await api.transact({
         actions: [{
             account: 'store.data',
             name: 'transact',
@@ -36,6 +36,7 @@ const crtx = async (obj, api) => {
             return { "status": false, "val": r };
         })
         .catch(e => console.log(e));
+    return { "status": rs.status === true, "val": rs.val + '' };
 }
 
 const checkDuplicate = async (txid, rpc) => {
@@ -95,5 +96,3 @@ const getTransaction = async (conn, txid) => {
 module.exports.get = getTransaction;
 module.exports.create = createTransaction;
 module.exports.validate = validate;
-
-module.exports.crtx = crtx;
