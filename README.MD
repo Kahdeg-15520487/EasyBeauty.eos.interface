@@ -1,3 +1,5 @@
+[![npm version](https://badge.fury.io/js/%40kahdeg%2Feasybeauty.eos.interface.svg)](https://badge.fury.io/js/%40kahdeg%2Feasybeauty.eos.interface)
+
 # EasyBeauty.eos.interface
 
 ## Requirements
