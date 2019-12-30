@@ -14,7 +14,6 @@ const crtx = async (obj, api) => {
         "to": obj.to,
         "hash": hasheddata
     }
-    console.log("lala");
     const rs = await api.transact({
         actions: [{
             account: 'store.data',

@@ -122,9 +122,6 @@ app.post('/discount', async (req, res) => {
     const txid = req.body.transactionId;
     const usid = req.body.userId;
     const percent = req.body.percent;
-    console.log(txid);
-    console.log(usid);
-    console.log(percent);
     const result = await discount.create(conn, txid, usid, percent);
     if (!result.status) {
         res.status(500);
