@@ -1,39 +1,30 @@
-const bcQuery = async (req, res, rpc) => {
-    const tableName = req.params["tb"];
+const bcQuery = async (conn,tableName) => {
     switch (tableName) {
         case "transactions":
             {
-                const result = await bcTransactionQuery(rpc, true);
-                res.json(result);
+                return await bcTransactionQuery(conn.rpc, true);
             }
-            break;
         case "coins":
             {
-                const result = await bcCoinQuery(rpc, true);
-                res.json(result);
+                return await bcCoinQuery(conn.rpc, true);
             }
-            break;
         case "reviews":
             {
-                const result = await bcReviewQuery(rpc, true);
-                res.json(result);
+                return await bcReviewQuery(conn.rpc, true);
             }
-            break;
         case "discounts":
             {
-                const result = await bcDiscountQuery(rpc, true);
-                res.json(result);
+                return await bcDiscountQuery(conn.rpc, true);
             }
-            break;
 
         default:
-            res.statusCode = 400;
-            console.log('unknown table');
-            res.send('Unknown table');
+            {
+                return { "status": false, "val": "table not found" };
+            }
     }
 }
 
-const bcTransactionQuery = (rpc,remk = false) => {
+const bcTransactionQuery = (rpc, remk = false) => {
     return rpc.get_table_rows({
         json: true,              // Get the response as json
         code: 'store.data',     // Contract that we target
@@ -42,8 +33,8 @@ const bcTransactionQuery = (rpc,remk = false) => {
         limit: 9999
     }).then(resp => {
         console.log("success");
-        if(remk){
-            return resp.rows.map(row=>{
+        if (remk) {
+            return resp.rows.map(row => {
                 delete row.key;
                 return row;
             });
@@ -52,7 +43,7 @@ const bcTransactionQuery = (rpc,remk = false) => {
     })
 }
 
-const bcCoinQuery = (rpc,remk = false) => {
+const bcCoinQuery = (rpc, remk = false) => {
     return rpc.get_table_rows({
         json: true,              // Get the response as json
         code: 'store.data',     // Contract that we target
@@ -61,8 +52,8 @@ const bcCoinQuery = (rpc,remk = false) => {
         limit: 9999
     }).then(resp => {
         console.log("success");
-        if(remk){
-            return resp.rows.map(row=>{
+        if (remk) {
+            return resp.rows.map(row => {
                 delete row.key;
                 return row;
             });
@@ -71,7 +62,7 @@ const bcCoinQuery = (rpc,remk = false) => {
     })
 }
 
-const bcReviewQuery = (rpc,remk = false) => {
+const bcReviewQuery = (rpc, remk = false) => {
     return rpc.get_table_rows({
         json: true,              // Get the response as json
         code: 'store.data',     // Contract that we target
@@ -80,8 +71,8 @@ const bcReviewQuery = (rpc,remk = false) => {
         limit: 9999
     }).then(resp => {
         console.log("success");
-        if(remk){
-            return resp.rows.map(row=>{
+        if (remk) {
+            return resp.rows.map(row => {
                 delete row.key;
                 return row;
             });
@@ -90,7 +81,7 @@ const bcReviewQuery = (rpc,remk = false) => {
     })
 }
 
-const bcDiscountQuery = (rpc,remk = false) => {
+const bcDiscountQuery = (rpc, remk = false) => {
     return rpc.get_table_rows({
         json: true,              // Get the response as json
         code: 'store.data',     // Contract that we target
@@ -99,8 +90,8 @@ const bcDiscountQuery = (rpc,remk = false) => {
         limit: 9999
     }).then(resp => {
         console.log("success");
-        if(remk){
-            return resp.rows.map(row=>{
+        if (remk) {
+            return resp.rows.map(row => {
                 delete row.key;
                 return row;
             });

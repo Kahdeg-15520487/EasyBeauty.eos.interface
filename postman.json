@@ -1,0 +1,412 @@
+{
+	"info": {
+		"_postman_id": "2ec8b4cc-a4d4-4dc4-9dfe-6cb52a5f4292",
+		"name": "eva.store.data",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "table coin",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{server_ip}}:{{server_port}}/table/coins",
+					"host": [
+						"{{server_ip}}"
+					],
+					"port": "{{server_port}}",
+					"path": [
+						"table",
+						"coins"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "table transaction",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{server_ip}}:{{server_port}}/table/transactions",
+					"host": [
+						"{{server_ip}}"
+					],
+					"port": "{{server_port}}",
+					"path": [
+						"table",
+						"transactions"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "table reviews",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{server_ip}}:{{server_port}}/table/reviews",
+					"host": [
+						"{{server_ip}}"
+					],
+					"port": "{{server_port}}",
+					"path": [
+						"table",
+						"reviews"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "table discount",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{server_ip}}:{{server_port}}/table/discounts",
+					"host": [
+						"{{server_ip}}"
+					],
+					"port": "{{server_port}}",
+					"path": [
+						"table",
+						"discounts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create transaction",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n   \"transactionId\": \"5d5a0e4fc3b2afsdafasdff\",\r\n   \"transactionInfo\":{\r\n       \"from\": \"5d5a0e50c3b2a23d743a41bc\",\r\n       \"to\": \"5d5a0e50c3b2a23d743a41bd\",\r\n    \t\"value\": 15\r\n   }\r\n}"
+				},
+				"url": {
+					"raw": "{{server_ip}}:{{server_port}}/transaction/create",
+					"host": [
+						"{{server_ip}}"
+					],
+					"port": "{{server_port}}",
+					"path": [
+						"transaction",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get transaction",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{server_ip}}:{{server_port}}/transaction/5d5a0e4fc3b2afsdafasdff",
+					"host": [
+						"{{server_ip}}"
+					],
+					"port": "{{server_port}}",
+					"path": [
+						"transaction",
+						"5d5a0e4fc3b2afsdafasdff"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "mock 5 transaction",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{server_ip}}:{{server_port}}/mock/transaction",
+					"host": [
+						"{{server_ip}}"
+					],
+					"port": "{{server_port}}",
+					"path": [
+						"mock",
+						"transaction"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "validate transaction",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n   \"transactionId\": \"5d5a0e4fc3b2afsdafasdff\",\r\n   \"transactionInfo\":{\r\n       \"from\": \"5d5a0e50c3b2a23d743a41bc\",\r\n       \"to\": \"5d5a0e50c3b2a23d743a41bd\",\r\n    \t\"value\": 15\r\n   }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{server_ip}}:{{server_port}}/transaction/validate/",
+					"host": [
+						"{{server_ip}}"
+					],
+					"port": "{{server_port}}",
+					"path": [
+						"transaction",
+						"validate",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get coin",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{server_ip}}:{{server_port}}/coin/5d7f398360020c0db0ad81ca",
+					"host": [
+						"{{server_ip}}"
+					],
+					"port": "{{server_port}}",
+					"path": [
+						"coin",
+						"5d7f398360020c0db0ad81ca"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update coin",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"userId\": \"5d7f398360020c0db0ad81ca\",\r\n\t\"coin\": 12\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{server_ip}}:{{server_port}}/coin/update",
+					"host": [
+						"{{server_ip}}"
+					],
+					"port": "{{server_port}}",
+					"path": [
+						"coin",
+						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create review",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"reviewId\": \"5d7f398360020c0db0ad81ca\",\r\n\t\"transactionId\": \"5d5a0e50c3b2a23d743a41c0\",\r\n\t\"data\": {\r\n\t\t\"rate\": 400,\r\n\t\t\"comment\": \"Good\",\r\n\t\t\"time\": 17635\r\n\t}\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{server_ip}}:{{server_port}}/review",
+					"host": [
+						"{{server_ip}}"
+					],
+					"port": "{{server_port}}",
+					"path": [
+						"review"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get review",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{server_ip}}:{{server_port}}/review/5d7f398360020c0db0ad81ca",
+					"host": [
+						"{{server_ip}}"
+					],
+					"port": "{{server_port}}",
+					"path": [
+						"review",
+						"5d7f398360020c0db0ad81ca"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "validate review",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"reviewId\": \"5d7f398360020c0db0ad81ca\",\r\n\t\"transactionId\": \"5d5a0e50c3b2a23d743a41c0\",\r\n\t\"data\": {\r\n\t\t\"rate\": 400,\r\n\t\t\"comment\": \"Good\",\r\n\t\t\"time\": 17635\r\n\t}\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{server_ip}}:{{server_port}}/review/validate",
+					"host": [
+						"{{server_ip}}"
+					],
+					"port": "{{server_port}}",
+					"path": [
+						"review",
+						"validate"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "mock 5 review",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{server_ip}}:{{server_port}}/mock/review",
+					"host": [
+						"{{server_ip}}"
+					],
+					"port": "{{server_port}}",
+					"path": [
+						"mock",
+						"review"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create discount",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"percent\": 5,\r\n\t\"transactionId\": \"5d5a0e50c3b2a23d743a41c0\",\r\n\t\"userId\": \"5d5a0e50c3b2a23d743a41c1\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{server_ip}}:{{server_port}}/discount",
+					"host": [
+						"{{server_ip}}"
+					],
+					"port": "{{server_port}}",
+					"path": [
+						"discount"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get discount",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{server_ip}}:{{server_port}}/discount?userId=5d5a0e50c3b2a23d743a41c1&transactionId=5d5a0e50c3b2a23d743a41c0",
+					"host": [
+						"{{server_ip}}"
+					],
+					"port": "{{server_port}}",
+					"path": [
+						"discount"
+					],
+					"query": [
+						{
+							"key": "userId",
+							"value": "5d5a0e50c3b2a23d743a41c1"
+						},
+						{
+							"key": "transactionId",
+							"value": "5d5a0e50c3b2a23d743a41c0"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

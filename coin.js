@@ -1,7 +1,7 @@
 const table = require('./table.js');
 
 const setCoin = async (obj, api) => {
-    return api.transact({
+    const result = await api.transact({
         actions: [{
             account: 'store.data',
             name: 'updatecoin',
@@ -16,60 +16,45 @@ const setCoin = async (obj, api) => {
         expireSeconds: 30,
     })
         .then(v => {
-            console.log(v);
-            console.log(v.processed.receipt);
             const txid = v.transaction_id;
             return { "status": true, "val": txid };
         }, r => {
-            console.log("failed");
-            console.log(r);
             return { "status": false, "val": r };
         })
         .catch(e => console.log(e));
+
+    return { "status": result.status === true, "val": result.val + '' };
 }
 
-const updateCoin = async (req, res, api, rpc) => {
-
-    const usid = req.body.userId;
-    const coin = req.body.coin;
-
-    const oldCoin = await table.getCoin(usid, rpc).then(v => {
-        console.log("found " + JSON.stringify(v));
+const updateCoin = async (conn, usid, coin) => {
+    const oldCoin = await table.getCoin(usid, conn.rpc).then(v => {
         return v;
-    },r=>{
-        console.log(r);
-        res.json(r);
-        return;
+    }, r => {
+        return null;
     });
-    // console.log(oldcoin);
+
     const obj = {
         "user": "store.data",
         "key": oldCoin ? oldCoin.key : -1,
         "userId": usid,
         "coin": coin,
     };
-
-    const result = await setCoin(obj, api);
-    if (result.status) {
-        res.send(result.val);
+    if (usid && coin) {
+        return await setCoin(obj, conn.api);
     }
     else {
-        res.statusCode = 500;
-        res.json(result.val);
+        return { "status": false, "val": "malformed data" };
     }
 }
 
-const getCoin = async (req, res, api, rpc) => {
-    const usid = req.params["usid"];
-    console.log(usid);
-    const c = await table.getCoin(usid, rpc);
-    if (c) {
-        delete c.key;
-        res.json(c);
+const getCoin = async (conn, usid) => {
+    const coin = await table.getCoin(usid, conn.rpc);
+    if (coin) {
+        delete coin.key;
+        return { "status": true, "val": JSON.stringify(coin) };
     }
     else {
-        res.statusCode = 404;
-        res.send("User coin not found");
+        return { "status": false, "val": "user's coin does not exist" };
     }
 }
 
